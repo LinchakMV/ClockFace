@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Clock from 'react-clock';
 import TimePicker from './TimePicker';
 import moment from 'moment';
+import { dateFormat } from '../utils';
 
 export default function Content({ currentTime }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,7 +24,7 @@ export default function Content({ currentTime }) {
       new Date(
         moment(selectedDate)
           .add(1, 'seconds')
-          .format('YYYY/MM/DD HH:mm:ss'),
+          .format(dateFormat),
       ),
     );
   }, 1000);
@@ -31,12 +32,12 @@ export default function Content({ currentTime }) {
   const londonTime = new Date(
     moment(selectedDate)
       .tz('Europe/London')
-      .format('YYYY/MM/DD HH:mm:ss'),
+      .format(dateFormat),
   );
   const NewYork = new Date(
     moment(selectedDate)
       .tz('America/New_York')
-      .format('YYYY/MM/DD HH:mm:ss'),
+      .format(dateFormat),
   );
   return (
     <div className="body-wrapper">

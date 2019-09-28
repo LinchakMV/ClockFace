@@ -6,6 +6,7 @@ import moment from 'moment-timezone';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
+import { dateFormat } from './utils';
 
 class App extends Component {
   state = {
@@ -19,7 +20,7 @@ class App extends Component {
     const currentTime = this.getTimeFromStorage();
     if (currentTime) {
       this.setState({
-        currentTime: new Date(moment(currentTime).format('YYYY/MM/DD HH:mm:ss')),
+        currentTime: new Date(moment(currentTime).format(dateFormat)),
       });
     }
   }
