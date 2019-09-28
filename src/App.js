@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import moment from 'moment-timezone';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Content from './components/Content';
+
+class App extends Component {
+  state = {
+    currentTime: new Date(),
+  };
+  onClick = () => {
+    this.setState({ currentTime: new Date() });
+  };
+
+  componentDidMount() {
+    const currentTime = this.getTimeFromStorage();
+    if (currentTime) {
+      this.setState({
+        currentTime: new Date(moment(currentTime).format('YYYY/MM/DD HH:mm:ss')),
+      });
+    }
+  }
+
+  getTimeFromStorage() {
+    try {
+      const item = window.localStorage.getItem('selectedDate');
+      return item && JSON.parse(item);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <Content currentTime={this.state.currentTime} />
+        <Footer onClick={this.onClick} />
+      </div>
+    );
+  }
 }
 
 export default App;
