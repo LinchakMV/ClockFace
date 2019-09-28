@@ -10,7 +10,7 @@ export default class Footer extends Component {
   }
   render() {
     return (
-      <BottomNavigation className="footer">
+      <BottomNavigation style={{ backgroundColor: '#f5f5f5' }} className="footer">
         <BottomNavigationAction
           label="Current time"
           icon={<CachedIcon />}

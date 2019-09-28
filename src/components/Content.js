@@ -1,15 +1,23 @@
-// import 'date-fns';
 import React, { useState, useRef, useEffect } from 'react';
 import Clock from 'react-clock';
 import TimePicker from './TimePicker';
 import moment from 'moment';
 
-export default function Content() {
+export default function Content({ currentTime }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  let [prevCurrentTime, setPrevCurrentTime] = useState(null);
+
+  if (currentTime !== prevCurrentTime) {
+    setSelectedDate(currentTime);
+    setPrevCurrentTime(currentTime);
+  }
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  useEffect(() => {
+    window.localStorage.setItem('selectedDate', JSON.stringify(selectedDate));
+  });
   useInterval(() => {
     setSelectedDate(
       new Date(
@@ -31,18 +39,17 @@ export default function Content() {
       .format('YYYY/MM/DD HH:mm:ss'),
   );
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div>
+    <div className="body-wrapper">
+      <div className="body-content">
+        <div className="clock">
           <p>London</p>
           <Clock value={londonTime} renderSecondHand={false} />
-          {console.log(londonTime)}
         </div>
-        <div>
+        <div className="clock">
           <p>Kyiv</p>
           <Clock value={selectedDate} renderSecondHand={false} />
         </div>
-        <div>
+        <div className="clock">
           <p>New York</p>
           <Clock value={NewYork} renderSecondHand={false} />
         </div>
