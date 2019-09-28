@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Clock from 'react-clock';
 import TimePicker from './TimePicker';
 import moment from 'moment';
-import { dateFormat } from '../utils';
+import { dateFormat } from '../utils/utils';
 
 export default function Content({ currentTime }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
