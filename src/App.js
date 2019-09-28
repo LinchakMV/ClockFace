@@ -6,7 +6,7 @@ import moment from 'moment-timezone';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
-import { dateFormat } from './utils';
+import { dateFormat } from './utils/utils';
 
 class App extends Component {
   state = {
