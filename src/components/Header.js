@@ -5,10 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 export default class Header extends Component {
   render() {
     return (
-      <AppBar
-        position="static"
-        style={{ height: '50px', display: 'flex', justifyContent: 'center', paddingLeft: '15px' }}
-      >
+      <AppBar position="static" className="header">
         <MenuIcon />
       </AppBar>
     );
